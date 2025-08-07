@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Projects from './components/Projects';
+import About from './components/About';
+import Footer from './components/Footer';
+import { theme } from './styles/theme';
+import { GlobalStyles } from './styles/GloblaStyles';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppContainer = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+`;
 
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <AppContainer>
+        <Header />
+        <main>
+          <Hero />
+          <Projects />
+          <About />
+        </main>
+        <Footer />
+      </AppContainer>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;
